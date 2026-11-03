@@ -227,7 +227,7 @@ footer { color: var(--muted); font-size: 12.5px; padding-block: 0 30px; }
     <div class="panel s8"><h3>Publication trend</h3><p class="note">Papers per year. 2026 is a partial year (data collected in October 2026).</p><div class="chart"><canvas id="ch-trend" aria-label="Papers per year"></canvas></div></div>
     <div class="panel s4"><h3>Journal quartiles</h3><p class="note">Share of journal papers by SCImago quartile.</p><div class="chart"><canvas id="ch-q" aria-label="Quartile distribution"></canvas></div></div>
     <div class="panel s6"><h3>Top 5 journals</h3><p class="note">By number of papers, with the journal's quartile.</p><div class="tablewrap"><table id="t-journals"></table></div></div>
-    <div class="panel s6"><h3>Conference ranks (CORE)</h3><p class="note">CORE ranks mainly computing conferences, so most of our conference papers are unranked.</p><div class="chart"><canvas id="ch-core" aria-label="CORE rank breakdown"></canvas></div></div>
+    <div class="panel s6"><h3>Conference ranks (CORE)</h3><p class="note">CORE ranks mainly computing conferences, so most of the two NITs' conference papers are unranked.</p><div class="chart"><canvas id="ch-core" aria-label="CORE rank breakdown"></canvas></div></div>
     <div class="panel s7"><h3>Research areas</h3><p class="note">Papers by OpenAlex field (top 11, then the rest).</p><div class="chart tall"><canvas id="ch-fields" aria-label="Research areas"></canvas></div></div>
     <div class="panel s5"><h3>Q1 share over time</h3><p class="note">Q1 papers as a share of ranked journal papers, per year.</p><div class="chart tall"><canvas id="ch-q1trend" aria-label="Q1 share by year"></canvas></div></div>
     <div class="panel s12"><h3>Journals and conferences per year</h3><p class="note">Papers per year by venue type.</p><div class="chart"><canvas id="ch-types" aria-label="Papers per year by type"></canvas></div></div>
@@ -284,7 +284,7 @@ footer { color: var(--muted); font-size: 12.5px; padding-block: 0 30px; }
 
 <section id="citation" role="tabpanel" aria-labelledby="tab-citation" hidden>
   <h2>Citation network</h2>
-  <p class="lede">Papers are nodes and an arrow means "cites". Drag to pan, scroll to zoom, click a paper for details. PageRank and in-degree are computed on citations between our own papers.</p>
+  <p class="lede">Papers are nodes and an arrow means "cites". Drag to pan, scroll to zoom, click a paper for details. PageRank and in-degree are computed on internal citations only. <b>Internal</b> = a NIT Trichy or NIT Surathkal paper citing another NIT Trichy or NIT Surathkal paper.</p>
   <div class="grid">
     <div class="panel s12"><div class="facts" id="cit-facts"></div></div>
     <div class="panel s7"><h3>The most influential papers and who cites them</h3><p class="note" id="cg-note"></p>
@@ -292,9 +292,9 @@ footer { color: var(--muted); font-size: 12.5px; padding-block: 0 30px; }
       <div class="graph" id="g-cit" role="img" aria-label="Citation network of the most influential papers"></div>
       <div class="info" id="cg-info">Click a paper to see its details.</div>
     </div>
-    <div class="panel s5"><h3>In-degree distribution</h3><p class="note">How many of our papers cite each paper (log–log). Most are never cited from inside; a few are cited dozens of times.</p><div class="chart tall"><canvas id="ch-indeg" aria-label="In-degree distribution"></canvas></div>
+    <div class="panel s5"><h3>In-degree distribution</h3><p class="note">How many papers of the two NITs cite each paper (log–log). Most are never cited internally; a few are cited dozens of times.</p><div class="chart tall"><canvas id="ch-indeg" aria-label="In-degree distribution"></canvas></div>
       <h3 style="margin-top:14px">Heavy tails: power law or log-normal?</h3><p class="note">Maximum-likelihood fits (powerlaw package). R &lt; 0 means log-normal fits better.</p><div class="tablewrap"><table id="t-fits"></table></div></div>
-    <div class="panel s12"><h3>Top 10 papers by PageRank</h3><p class="note">Within citations between our own papers.</p><div class="tablewrap"><table id="t-pr"></table></div></div>
+    <div class="panel s12"><h3>Top 10 papers by PageRank</h3><p class="note">Computed on internal citations only.</p><div class="tablewrap"><table id="t-pr"></table></div></div>
   </div>
 </section>
 
@@ -349,15 +349,15 @@ footer { color: var(--muted); font-size: 12.5px; padding-block: 0 30px; }
     <div class="panel s5"><h3>Impact ratio</h3><p class="note">Citations received ÷ citations made, by publication year. Recent papers have had little time to be cited, so the ratio falls towards 2026.</p><div class="chart"><canvas id="ch-ir" aria-label="Impact ratio by year"></canvas></div></div>
     <div class="panel s6"><h3>Co-authored papers by type of partner</h3><p class="note">A paper counts once for each partner on it (log scale). All non-NIT clusters are cross-cluster links.</p><div class="chart tall"><canvas id="ch-clusters" aria-label="Partners by cluster"></canvas></div></div>
     <div class="panel s6"><h3>Strongest co-authorship partners</h3><p class="note">Top 10 per NIT by shared papers. Joint-paper FWCI = mean field-weighted impact of the papers written with that partner; the chip shows the gap to the NIT's own average (does collaborating pay off?).</p><div class="tablewrap"><table id="t-partners"></table></div></div>
-    <div class="panel s6"><h3>Top 10 Indian institutes citing us</h3><p class="note">Citations from the partner's papers to ours (the other NIT left out).</p><div class="tablewrap"><table id="t-citing"></table></div></div>
+    <div class="panel s6"><h3>Top 10 Indian institutes citing the two NITs</h3><p class="note">Citations from the partner's papers to the NIT's papers (the other NIT left out).</p><div class="tablewrap"><table id="t-citing"></table></div></div>
     <div class="panel s6"><h3>Partners worth approaching</h3><p class="note">Similar research topics (Jaccard of subfields) and heavy citation exchange, but at most 5 joint papers.</p><div class="tablewrap"><table id="t-opp"></table></div></div>
     <div class="panel s12"><h3>Hub faculty</h3><p class="note">Faculty who connect their NIT with the most other Indian institutes.</p><div class="tablewrap"><table id="t-hubs"></table></div></div>
     <div class="panel s12"><h3>The knowledge hierarchy</h3><p class="note" id="hier-note"></p><div class="chart"><canvas id="ch-hier" aria-label="Citations received per citation given, by cluster"></canvas></div></div>
-    <div class="panel s7"><h3>Where our partners are</h3><p class="note">Indian institutes linked to the NIT (co-authorship or 30+ citations exchanged). Bubble size = joint papers; gray = citations only. Stars = our NITs.</p><div style="position:relative"><canvas id="ch-map" aria-label="Map of partner institutes"></canvas></div></div>
+    <div class="panel s7"><h3>Where the two NITs' partners are</h3><p class="note">Indian institutes linked to the NIT (co-authorship or 30+ citations exchanged). Bubble size = joint papers; gray = citations only. Stars = the two NITs.</p><div style="position:relative"><canvas id="ch-map" aria-label="Map of partner institutes"></canvas></div></div>
     <div class="panel s5"><h3>Gravity model</h3><p class="note">Poisson regression on partner size and distance. Elasticity = % change for a 1% longer distance.</p><div class="tablewrap"><table id="t-gravity"></table></div></div>
     <div class="panel s12"><h3>People work locally, knowledge travels</h3><p class="note">Both NITs together: the share of all joint papers and of all citations exchanged with Indian partners, by distance from the NIT.</p><div class="facts" id="local-facts" style="margin-bottom:14px"></div><div class="chart"><canvas id="ch-local" aria-label="Joint papers and citations by distance"></canvas></div></div>
     <div class="panel s12"><h3>Topic similarity vs joint papers</h3><p class="note">Each dot is a main partner: weighted Jaccard similarity of research subfields against shared papers (log).</p><div class="chart tall"><canvas id="ch-topic" aria-label="Topic similarity vs shared papers"></canvas></div></div>
-    <div class="panel s12"><h3>Most-cited papers that cite us</h3><p class="note">Top papers from other Indian institutes that cite each NIT (retracted papers left out).</p><div class="tablewrap"><table id="t-citers"></table></div></div>
+    <div class="panel s12"><h3>Most-cited papers that cite the two NITs</h3><p class="note">Top papers from other Indian institutes that cite each NIT (retracted papers left out).</p><div class="tablewrap"><table id="t-citers"></table></div></div>
   </div>
 </section>
 
@@ -613,13 +613,13 @@ let cyCit, cyAu, auMode = "inst";
 const COMM = ["--c1", "--c2", "--c3", "--c4", "--c5", "--c6", "--c7", "--c8"];
 function citationGraph() {
   const g = D.citation_graph, prMax = Math.max(...g.nodes.map((n) => n.pr));
-  $("#cg-note").textContent = `The ${g.hubs} most influential papers by PageRank (large, outlined) and every paper of ours that cites them or that they cite: ${fmt(g.nodes.length)} of our ${fmt(g.total_papers)} papers, ${fmt(g.edges.length)} of ${fmt(g.total_internal_edges)} citations between our papers.`;
+  $("#cg-note").textContent = `The ${g.hubs} most influential papers by PageRank (large, outlined) and every paper of the two NITs that cites them or that they cite: ${fmt(g.nodes.length)} of the ${fmt(g.total_papers)} papers, ${fmt(g.edges.length)} of ${fmt(g.total_internal_edges)} internal citations.`;
   cyCit = cytoscape({ container: $("#g-cit"), layout: { name: "preset" }, wheelSensitivity: 0.25,
     elements: [...g.nodes.map((n) => ({ data: { ...n, size: n.hub ? 14 + 26 * Math.sqrt(n.pr / prMax) : 5 + 10 * Math.sqrt(n.pr / prMax) }, position: { x: n.x, y: n.y } })),
                ...g.edges.map(([s, t], k) => ({ data: { id: "c" + k, source: s, target: t } }))],
     style: citStyle() });
   cyCit.on("tap", "node", (e) => { const n = e.target.data();
-    $("#cg-info").innerHTML = `<b>${esc(n.title)}</b><br>${chip(n.inst)} ${n.year} · ${fmt(n.citations)} citations · cited by ${n.indeg} of our papers · PageRank rank ${fmt(n.rank)} of ${fmt(g.total_papers)}${n.doi ? ` · <a href="${esc(n.doi)}" target="_blank" rel="noopener">DOI</a>` : ""}`; });
+    $("#cg-info").innerHTML = `<b>${esc(n.title)}</b><br>${chip(n.inst)} ${n.year} · ${fmt(n.citations)} citations · cited by ${n.indeg} papers of the two NITs · PageRank rank ${fmt(n.rank)} of ${fmt(g.total_papers)}${n.doi ? ` · <a href="${esc(n.doi)}" target="_blank" rel="noopener">DOI</a>` : ""}`; });
   cyCit.fit(undefined, 16);
   filterCitation();
 }
@@ -675,10 +675,10 @@ function netFacts() {
   const f = (v, l) => `<div class="fact"><b>${v}</b>${l}</div>`;
   $("#net-facts").innerHTML = [
     f(fmt(c.edges_total), "citation edges in the submitted file (internal, to and from other Indian institutes)"),
-    f(fmt(c.internal_graph_edges), `citations between our own ${fmt(c.internal_graph_nodes)} papers (PageRank graph)`),
+    f(fmt(c.internal_graph_edges), `internal citations between the two NITs' ${fmt(c.internal_graph_nodes)} papers (PageRank graph)`),
     f(fmt(a.nit_graph_nodes), `faculty in the co-authorship graph, ${fmt(a.nit_graph_edges)} weighted links`),
     f(fmt(a.modularity, 2), `Louvain modularity, ${a.louvain_communities} communities (${a.communities_size_ge_10} with 10+ faculty)`),
-    f(fmt(sw[0].avg_clustering, 2) + " vs " + fmt(sw[1].avg_clustering, 3), "clustering: our network vs random graphs with the same degrees"),
+    f(fmt(sw[0].avg_clustering, 2) + " vs " + fmt(sw[1].avg_clustering, 3), "clustering: the real network vs random graphs with the same degrees"),
     f(fmt(sw[0].avg_path_length, 1) + " vs " + fmt(sw[1].avg_path_length, 1), "average path length: a small world"),
   ].join("");
 }
@@ -707,7 +707,7 @@ function connections() {
     return `${fmt(r.joint_mean_fwci, 2)} <span class="chip ${d >= 0 ? "good" : ""}">${d >= 0 ? "+" : ""}${fmt(d, 2)}</span>`; };
   $("#t-partners").innerHTML = table(a.top_partners.filter((r) => vi(r)), `${inst === "Both" ? "<th>NIT</th>" : ""}<th>Partner</th><th>Type</th><th class="num">Shared papers</th><th class="num">Their citations</th><th class="num">Joint-paper FWCI</th>`,
     (r) => `<tr>${inst === "Both" ? `<td>${chip(r.your_inst)}</td>` : ""}<td>${esc(r.partner_inst)}</td><td><span class="chip">${esc(r.partner_cluster)}</span></td><td class="num">${fmt(r.shared_papers)}</td><td class="num">${fmt(r.total_citations)}</td><td class="num">${jointCell(r)}</td></tr>`);
-  $("#t-citing").innerHTML = table(a.top_citing.filter((r) => vi(r)), `${inst === "Both" ? "<th>NIT</th>" : ""}<th>Institute</th><th>Type</th><th class="num">Cites us</th><th class="num">We cite them</th>`,
+  $("#t-citing").innerHTML = table(a.top_citing.filter((r) => vi(r)), `${inst === "Both" ? "<th>NIT</th>" : ""}<th>Institute</th><th>Type</th><th class="num">Cites the NIT</th><th class="num">The NIT cites them</th>`,
     (r) => `<tr>${inst === "Both" ? `<td>${chip(r.your_inst)}</td>` : ""}<td>${esc(r.partner_inst)}</td><td><span class="chip">${esc(r.partner_cluster)}</span></td><td class="num">${fmt(r.cites_from_partner)}</td><td class="num">${fmt(r.cites_to_partner)}</td></tr>`);
   $("#t-opp").innerHTML = table(a.opportunities.filter((r) => vi(r, "institution")), `${inst === "Both" ? "<th>NIT</th>" : ""}<th>Partner</th><th class="num">Joint papers</th><th class="num">Citations exchanged</th><th class="num">Topic similarity</th>`,
     (r) => `<tr>${inst === "Both" ? `<td>${chip(r.institution)}</td>` : ""}<td>${esc(r.partner)}</td><td class="num">${fmt(r.shared_papers)}</td><td class="num">${fmt(r.cites_from_partner + r.cites_to_partner)}</td><td class="num">${fmt(r.topic_weighted_jaccard, 2)}</td></tr>`);
@@ -885,16 +885,16 @@ function citationExtras() {
   const N = D.net, s = D.analysis.network_summary.citation_network;
   $("#cit-facts").innerHTML = [
     fact(fmt(s.edges_total), "citation edges in citation_network.csv (internal, and to / from other Indian institutes)"),
-    fact(fmt(s.internal_graph_edges), `citations between our own ${fmt(s.internal_graph_nodes)} papers`),
-    fact(pct(N.indegree_zero / s.internal_graph_nodes), "of our papers are not cited by any other paper of ours"),
-    fact(fmt(Math.max(...N.indegree_dist.map((d) => d[0]))), "highest in-degree: the paper our own faculty cite most"),
+    fact(fmt(s.internal_graph_edges), `internal citations between the two NITs' ${fmt(s.internal_graph_nodes)} papers`),
+    fact(pct(N.indegree_zero / s.internal_graph_nodes), "of the papers are never cited internally"),
+    fact(fmt(Math.max(...N.indegree_dist.map((d) => d[0]))), "highest internal in-degree: the paper the two NITs' faculty cite most"),
   ].join("");
   draw("ch-indeg", { type: "scatter", data: { datasets: [{ label: "Papers", data: N.indegree_dist.map(([k, n]) => ({ x: k, y: n })), backgroundColor: css("--both"), pointRadius: 4, pointHoverRadius: 6 }] },
     options: baseOptions({ interaction: { mode: "nearest", intersect: true }, plugins: pointTip((c) => `${fmt(c.raw.y)} papers with in-degree ${c.raw.x}`),
-      scales: logScales("in-degree (citations from our own papers)", "number of papers") }) });
+      scales: logScales("in-degree (internal citations)", "number of papers") }) });
   $("#t-fits").innerHTML = T2([["Distribution"], ["α", 1], ["x min", 1], ["R", 1], ["p", 1]],
     N.degree_fits.map((r) => [esc(r.distribution), fmt(r.alpha, 2), fmt(r.xmin), fmt(r.R_vs_lognormal, 2), fmt(r.p_vs_lognormal, 3)]));
-  $("#t-pr").innerHTML = T2([["#", 1], ["Title"], ["NIT"], ["Year", 1], ["PageRank", 1], ["Cited by our papers", 1], ["All citations", 1], ["DOI"]],
+  $("#t-pr").innerHTML = T2([["#", 1], ["Title"], ["NIT"], ["Year", 1], ["PageRank", 1], ["Internal citations", 1], ["All citations", 1], ["DOI"]],
     N.top_pagerank.map((r, k) => [k + 1, esc(r.title), chip(r.institution.includes(";") ? "Both" : r.institution), r.year, (r.pagerank * 1000).toFixed(2) + "‰", fmt(r.in_degree_internal), fmt(r.citations_total), doiLink(r.doi)]));
 }
 
@@ -910,7 +910,7 @@ function coauthorExtras() {
       scales: logScales("faculty co-authors (degree)", "number of faculty") }) });
   const rc = N.rich_club;
   draw("ch-rich", { type: "line", data: { labels: rc.map((r) => r.k), datasets: [
-      { label: "ρ(k): our network vs random", data: rc.map((r) => r.rho), borderColor: css("--both"), backgroundColor: css("--both"), borderWidth: 2.5, pointRadius: 3 },
+      { label: "ρ(k): real network vs random", data: rc.map((r) => r.rho), borderColor: css("--both"), backgroundColor: css("--both"), borderWidth: 2.5, pointRadius: 3 },
       { label: "random level (1)", data: rc.map(() => 1), borderColor: css("--ink-2"), borderDash: [5, 4], borderWidth: 1.5, pointRadius: 0 }] },
     options: baseOptions({ plugins: { tooltip: { callbacks: { afterBody: (c) => `${rc[c[0].dataIndex].nodes_with_degree_gt_k} faculty with more than ${rc[c[0].dataIndex].k} co-authors` } } },
       scales: { x: { title: { display: true, text: "k (more than k faculty co-authors)", color: css("--muted") }, grid: { display: false } }, y: { beginAtZero: true } } }) });
@@ -992,17 +992,17 @@ function growthTab() {
 function connectionsExtras() {
   const N = D.net, C = D.conn;
   const cf = N.cluster_flow;
-  $("#hier-note").innerHTML = `Citations each cluster gives our NITs for every citation we give them (both NITs, co-authorship rule; ${fmt(N.flow_totals.partners)} institutes).
-    Below 1, we draw on them more than they draw on us. Weighted reciprocity of the institute network: ${N.flow_reciprocity}.`;
-  draw("ch-hier", { type: "bar", data: { labels: cf.map((r) => r.cluster), datasets: [{ label: "they cite us ÷ we cite them", data: cf.map((r) => +r.ratio.toFixed(2)),
+  $("#hier-note").innerHTML = `Citations each cluster gives the two NITs for every citation the NITs give them (both NITs, co-authorship rule; ${fmt(N.flow_totals.partners)} institutes).
+    Below 1, the NITs draw on them more than they draw on the NITs. Weighted reciprocity of the institute network: ${N.flow_reciprocity}.`;
+  draw("ch-hier", { type: "bar", data: { labels: cf.map((r) => r.cluster), datasets: [{ label: "they cite the NITs ÷ the NITs cite them", data: cf.map((r) => +r.ratio.toFixed(2)),
       backgroundColor: cf.map((r) => r.ratio < 0.9 ? css("--c4") : r.ratio > 1.1 ? css("--c3") : css("--c8")), borderRadius: 4 }] },
-    options: baseOptions({ plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => { const r = cf[c.dataIndex]; return `${fmt(r.ratio, 2)}: they cite us ${fmt(r.they_cite_us)}, we cite them ${fmt(r.we_cite_them)}`; } } } },
+    options: baseOptions({ plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => { const r = cf[c.dataIndex]; return `${fmt(r.ratio, 2)}: they cite the NITs ${fmt(r.they_cite_us)}, the NITs cite them ${fmt(r.we_cite_them)}`; } } } },
       scales: { x: { grid: { display: false }, ticks: { autoSkip: false } }, y: { beginAtZero: true, grid: { color: (c) => c.tick.value === 1 ? css("--ink-2") : css("--grid") } } } }) });
   const pts = C.geo_points.filter((p) => views().includes(p[0]));
   const ds = views().map((i) => ({ label: `${i} partners`, data: pts.filter((p) => p[0] === i && p[4] > 0).map((p) => ({ x: p[3], y: p[2], r: 2 + 1.3 * Math.sqrt(p[4]), p })),
     backgroundColor: instColor(i) + "66", borderColor: instColor(i), borderWidth: 1 }));
   ds.push({ label: "citations only", data: pts.filter((p) => p[4] === 0).map((p) => ({ x: p[3], y: p[2], r: 2, p })), backgroundColor: css("--c8") + "88", borderWidth: 0 });
-  ds.unshift({ label: "our NITs", data: views().map((i) => ({ x: C.geo_home[i][1], y: C.geo_home[i][0], r: 11, home: i })), backgroundColor: views().map(instColor),
+  ds.unshift({ label: "the two NITs", data: views().map((i) => ({ x: C.geo_home[i][1], y: C.geo_home[i][0], r: 11, home: i })), backgroundColor: views().map(instColor),
     borderColor: css("--ink"), borderWidth: 1.5, pointStyle: "star" });
   draw("ch-map", { type: "bubble", data: { datasets: ds },
     options: baseOptions({ interaction: { mode: "nearest", intersect: true }, maintainAspectRatio: true, aspectRatio: 1.05,
@@ -1032,7 +1032,7 @@ function connectionsExtras() {
       plugins: { tooltip: { callbacks: { label: (c) => { const r = c.raw.r; return `${r.partner}: similarity ${fmt(r.topic_weighted_jaccard, 2)}, ${fmt(r.shared_papers)} joint papers, ${fmt(r.exchange)} citations exchanged`; } } } },
       scales: { x: { title: { display: true, text: "topic similarity (weighted Jaccard)", color: css("--muted") } }, y: { type: "logarithmic", title: { display: true, text: "joint papers (log)", color: css("--muted") } } } }) });
   const tp = C.top_citing_papers.filter((r) => views().includes(r.institution));
-  $("#t-citers").innerHTML = T2([...(inst === "Both" ? [["Cites"]] : []), ["Citing paper"], ["Year", 1], ["Venue"], ["Its citations", 1], ["From"], ["Our papers it cites", 1]],
+  $("#t-citers").innerHTML = T2([...(inst === "Both" ? [["Cites"]] : []), ["Citing paper"], ["Year", 1], ["Venue"], ["Its citations", 1], ["From"], ["NIT papers it cites", 1]],
     tp.map((r) => [...(inst === "Both" ? [chip(r.institution)] : []), esc(r.citing_paper), r.year, esc(r.venue || ""), fmt(r.its_citations),
                    `<span style="color:var(--muted)">${esc(String(r.citing_institutes || "").split(";").join(", "))}</span>`, fmt(r.our_papers_it_cites)]));
 }
